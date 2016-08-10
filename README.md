@@ -1,32 +1,132 @@
-# electron-quick-start
+# TQRenderer
 
-**Clone and run for a quick way to see an Electron in action.**
+[![NPM version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Appveyor Build Status][appveyor-image]][appveyor-url]
+[![Dependency Status][david_img]][david_site]
 
-This is a minimal Electron application based on the [Quick Start Guide](http://electron.atom.io/docs/latest/tutorial/quick-start) within the Electron documentation.
+## Install
 
-**Use this app along with the [Electron API Demos](http://electron.atom.io/#get-started) app for API code examples to help you get started.**
-
-A basic Electron application needs just these files:
-
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
-
-You can learn more about each of these components within the [Quick Start Guide](http://electron.atom.io/docs/latest/tutorial/quick-start).
-
-## To Use
-
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+First, clone the repo via git and then install dependencies.
 
 ```bash
-# Clone this repository
-git clone https://github.com/electron/electron-quick-start
-# Go into the repository
-cd electron-quick-start
-# Install dependencies and run the app
-npm install && npm start
+$ cd your-project-name && npm install
 ```
 
-Learn more about Electron and its API in the [documentation](http://electron.atom.io/docs/latest).
 
-#### License [CC0 (Public Domain)](LICENSE.md)
+## Run
+
+Run this two commands __simultaneously__ in different console tabs.
+
+```bash
+$ npm run hot-server
+$ npm run start-hot
+```
+
+or run two servers with one command
+
+```bash
+$ npm run dev
+```
+
+*Note: requires a node version >= 4 and an npm version >= 2.*
+
+
+## DevTools
+
+#### Toggle Chrome DevTools
+
+- OS X: <kbd>Cmd</kbd> <kbd>Alt</kbd> <kbd>I</kbd> or <kbd>F12</kbd>
+- Linux: <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>I</kbd> or <kbd>F12</kbd>
+- Windows: <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>I</kbd> or <kbd>F12</kbd>
+
+*See [electron-debug](https://github.com/sindresorhus/electron-debug) for more information.*
+
+#### DevTools extension
+
+This app has included the following DevTools extensions:
+
+* [Devtron](https://github.com/electron/devtron) - Install via [electron-debug](https://github.com/sindresorhus/electron-debug).
+* [React Developer Tools](https://github.com/facebook/react-devtools) - Install via [electron-devtools-installer](https://github.com/GPMDP/electron-devtools-installer).
+* [Redux DevTools](https://github.com/zalmoxisus/redux-devtools-extension) - Install via [electron-devtools-installer](https://github.com/GPMDP/electron-devtools-installer).
+
+You can find the tabs on Chrome DevTools.
+
+If you want to update extensions version, please set `UPGRADE_EXTENSIONS` env, just run:
+
+```bash
+$ UPGRADE_EXTENSIONS=1 npm run dev
+
+# For Windows
+$ set UPGRADE_EXTENSIONS=1 && npm run dev
+```
+
+## Externals
+
+If you use any 3rd party libraries which can't be built with webpack, you must list them in your `webpack.config.base.js`：
+
+```javascript
+externals: [
+  // put your node 3rd party libraries which can't be built with webpack here (mysql, mongodb, and so on..)
+]
+```
+
+You can find those lines in the file.
+
+
+## CSS Modules
+
+This app is configured to use [css-modules](https://github.com/css-modules/css-modules).
+
+All `.css` file extensions will use css-modules unless it has `.global.css`.
+
+If you need global styles, stylesheets with `.global.css` will not go through the
+css-modules loader. e.g. `app.global.css`
+
+
+## Package
+
+```bash
+$ npm run package
+```
+
+To package apps for all platforms:
+
+```bash
+$ npm run package-all
+```
+
+#### Options
+
+- --name, -n: Application name (default: ElectronReact)
+- --version, -v: Electron version (default: latest version)
+- --asar, -a: [asar](https://github.com/atom/asar) support (default: false)
+- --icon, -i: Application icon
+- --all: pack for all platforms
+
+Use `electron-packager` to pack your app with `--all` options for darwin (osx), linux and win32 (windows) platform. After build, you will find them in `release` folder. Otherwise, you will only find one for your os.
+
+`test`, `tools`, `release` folder and devDependencies in `package.json` will be ignored by default.
+
+#### Default Ignore modules
+
+We add some module's `peerDependencies` to ignore option as default for application size reduction.
+
+- `babel-core` is required by `babel-loader` and its size is ~19 MB
+- `node-libs-browser` is required by `webpack` and its size is ~3MB.
+
+> **Note:** If you want to use any above modules in runtime, for example: `require('babel/register')`, you should move them from `devDependencies` to `dependencies`.
+
+#### Building windows apps from non-windows platforms
+
+Please checkout [Building windows apps from non-windows platforms](https://github.com/maxogden/electron-packager#building-windows-apps-from-non-windows-platforms).
+
+## Dispatching redux actions from main process
+
+See discussion in [#118](https://github.com/chentsulin/electron-react-boilerplate/issues/118) and [#108](https://github.com/chentsulin/electron-react-boilerplate/issues/108)
+
+## How hot-reloading works on Electron
+
+This uses [webpack-target-electron-renderer](https://github.com/chentsulin/webpack-target-electron-renderer) to provide a build target for electron renderer process. Read more information [here](https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works).
+
+> Note: webpack >= 1.12.15 has built-in support for `electron-main` and `electron-renderer` targets.
