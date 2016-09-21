@@ -5,6 +5,9 @@ import { hashHistory } from 'react-router';
 import { routerMiddleware, push } from 'react-router-redux';
 import rootReducer from '../reducers';
 
+import dragndropMiddleware from './middleware/dragndrop';
+import dragndropGenerator from './generators/dragndrop';
+
 import * as counterActions from '../actions/counter';
 
 const actionCreators = {
@@ -20,7 +23,7 @@ const logger = createLogger({
 const router = routerMiddleware(hashHistory);
 
 const enhancer = compose(
-  applyMiddleware(thunk, router, logger),
+  applyMiddleware(thunk, router, dragndropMiddleware, logger),
   window.devToolsExtension ?
     window.devToolsExtension({ actionCreators }) :
     noop => noop
@@ -28,6 +31,8 @@ const enhancer = compose(
 
 export default function configureStore(initialState) {
   const store = createStore(rootReducer, initialState, enhancer);
+
+  dragndropGenerator(store);
 
   if (window.devToolsExtension) {
     window.devToolsExtension.updateStore(store);
