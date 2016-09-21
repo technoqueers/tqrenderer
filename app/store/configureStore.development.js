@@ -8,10 +8,10 @@ import rootReducer from '../reducers';
 import dragndropMiddleware from './middleware/dragndrop';
 import dragndropGenerator from './generators/dragndrop';
 
-import * as counterActions from '../actions/counter';
+import * as dragndropActions from '../actions/dragndrop';
 
 const actionCreators = {
-  ...counterActions,
+  ...dragndropActions,
   push
 };
 
