@@ -1,5 +1,7 @@
 import { app, BrowserWindow, Menu, shell } from 'electron';
 
+const APP_NAME = 'TQ Renderer';
+
 let menu;
 let template;
 let mainWindow = null;
@@ -65,9 +67,9 @@ app.on('ready', async () => {
 
   if (process.platform === 'darwin') {
     template = [{
-      label: 'Electron',
+      label: APP_NAME,
       submenu: [{
-        label: 'About ElectronReact',
+        label: `About ${APP_NAME}`,
         selector: 'orderFrontStandardAboutPanel:'
       }, {
         type: 'separator'
@@ -77,7 +79,7 @@ app.on('ready', async () => {
       }, {
         type: 'separator'
       }, {
-        label: 'Hide ElectronReact',
+        label: `Hide ${APP_NAME}`,
         accelerator: 'Command+H',
         selector: 'hide:'
       }, {
