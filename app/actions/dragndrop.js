@@ -11,10 +11,11 @@ export function fileDropped(file) {
 
 export const FILE_CONTENTS_READ_SUCCESS = 'FILE_CONTENTS_READ_SUCCESS';
 
-export function fileContentsReadSuccess(contents) {
+export function fileContentsReadSuccess(file, contents) {
   return {
     type: FILE_CONTENTS_READ_SUCCESS,
     payload: {
+      file,
       contents
     }
   };

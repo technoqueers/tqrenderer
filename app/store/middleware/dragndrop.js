@@ -13,7 +13,9 @@ const dragndrop = store => next => action => {
     fs.readFile(path, (err, contents) => {
       const resultAction = err ?
         fileContentsReadFail(err) :
-        fileContentsReadSuccess(contents.toString())
+        fileContentsReadSuccess(
+          action.payload.file, contents.toString()
+        )
       ;
 
       store.dispatch(resultAction);
