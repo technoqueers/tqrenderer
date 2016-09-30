@@ -1,6 +1,6 @@
 import { app, BrowserWindow, Menu, shell } from 'electron';
 
-const APP_NAME = 'TQ Renderer';
+const APP_NAME = 'TechnoQueers';
 
 let menu;
 let template;

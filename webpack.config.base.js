@@ -15,6 +15,11 @@ export default {
       {
         test: /\.svg$/,
         loader: 'url-loader'
+      },
+      {
+        test: /\.html$/,
+        loader: 'raw-loader',
+        exclude: /node_modules/
       }
     ]
   },
