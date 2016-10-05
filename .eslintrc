@@ -1,7 +1,7 @@
 {
   "parser": "babel-eslint",
   "plugins": [
-    "moment-utc",
+    "import",
     "react"
   ],
   "env": {                           // http://eslint.org/docs/user-guide/configuring.html#specifying-environments
@@ -40,6 +40,13 @@
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
+    }
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.eslint.js"
+      }
     }
   },
   "rules": {
@@ -219,11 +226,6 @@
       "exceptions": ["-", "+"],
       "markers": ["=", "!"]           // space here to support sprockets directives
     }],
-
-/**
- * Plugins
- */
-    "moment-utc/no-moment-without-utc": 2, // https://github.com/wunderflats/eslint-plugin-moment-utc/blob/master/docs/rules/no-moment-without-utc.md
 
 /**
  * React

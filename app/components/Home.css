@@ -1,0 +1,27 @@
+.container {
+  display: table;
+  height: 100%;
+  text-align: center;
+  width: 100%;
+}
+
+.header {
+  display: table-row;
+  height: 2rem;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.header h2 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.text {
+  display: table-row;
+  height: 95%;
+  width: 90%;
+}
